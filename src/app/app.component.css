@@ -1,0 +1,27 @@
+ul{
+    display:flex;
+    flex-direction:row;
+    list-style: none;
+    justify-content:flex-end;
+    background-color: blueviolet;
+    
+}
+li{
+   
+    border:2px solid black;
+    border-radius: 10px;
+    
+    padding:5px;
+    margin:10px;
+}
+a:link{
+    text-decoration : none;
+    text-align: center;
+
+}
+a:active{
+    text-decoration: underline;
+}
+li:hover{
+    background-color: darkkhaki;
+}
