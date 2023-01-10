@@ -15,13 +15,13 @@ export class AdminComponent implements OnInit {
       id: this.router.snapshot.params['id'],   //To get the data from url from template of component inside the [] is identifier
       name: this.router.snapshot.params['name'],  
     };
-    // this.router.params.subscribe(data=>    //whenever parameters changes need to listen using suscribe it is third party tool
-    //   {                                    // subscribe will indicate the angular to listen this type of data
-    //     this.Admin={
-    //       id: data['id'],
-    //       name:data['name'],
-    //     }
-    //   })
+    this.router.params.subscribe(data=>    //whenever parameters changes need to listen using suscribe it is third party tool
+      {                                    // subscribe will indicate the angular to listen this type of data
+        this.Admin={
+          id: data['id'],
+          name:data['name'],
+        }
+      })
   }
 
 }
