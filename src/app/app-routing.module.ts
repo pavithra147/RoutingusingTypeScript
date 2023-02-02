@@ -4,6 +4,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AuthGuardService } from './auth-guard.service';
 import { CanActivatedChild } from './CanActivatedChild';
 import { TestCanActivate } from './guards';
+import { SignInComponent } from './sign-in/sign-in.component';
 import { UserComponent } from './user/user.component';
 import { ViewComponent } from './view/view.component';
 
@@ -15,6 +16,7 @@ const routes: Routes = [
 {path:'Admin',component:AdminComponent},
 //By declaring like this angular will assume this data will be "DYNAMIC"
 {path:'Admin/:id/:name',component:AdminComponent},
+{path:'sign-in',component:SignInComponent}
 ];
 
 @NgModule({
