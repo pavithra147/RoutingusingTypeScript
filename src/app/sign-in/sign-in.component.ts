@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import {filter} from 'rxjs/operators'
+import { interval, map, observable, Observable,of } from 'rxjs';
+import {catchError, filter} from 'rxjs/operators';
+import {ajax} from 'rxjs/ajax';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -48,10 +49,33 @@ export class SignInComponent implements OnInit,OnDestroy {
 this.subscription=customObservable.pipe(map(data=>{return console.log('count is'),data})).subscribe({next:(data:any)=>
    console.log(data),error:(e)=>console.log(e),complete:()=>console.log("completed")});
 
+    //map operator
+    
+    /* First Type*/
+    // const nums =of(1,2,3);   
+    // const sqrValues=map((val:number)=>val*val);
+    // const sqrNums=sqrValues(nums);
+    // sqrNums.subscribe(x=>console.log(x));
+
+         /*'pipe' is used to link operators together. 'pipe' let you to combine multiple functions to single function */                                            /* 'of()' operator convert argument inside to observable*/   
+    const sqrNums= of(1,3,5).pipe(map((val:number)=>val*val)).subscribe(x=>console.log(x));
+
+    //filter operator
+   const sqrOdd=of(1,2,3,4,5).pipe(filter(n=>n%2 !==0),map(n=> n+1)).subscribe(x=>console.log(x));
+
+  
+
+const observable = interval(1000);
+const subscription = observable.subscribe(x => console.log(x));
+// Later:
+// This cancels the ongoing Observable execution which
+// was started by calling subscribe with an Observer.
+subscription.unsubscribe();
+  
+
 
 }
 
 }
-
 
 
