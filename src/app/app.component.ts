@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
+import { ViewService } from './view/view.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,23 @@ import { AuthService } from './auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private authservice:AuthService){}
+  public count:any;
+  constructor(private authservice:AuthService,private view:ViewService){
+    this.view.obsfromsubject$.subscribe(x=>{
+      console.log(x);
+      this.count=x;
+    })
+   // this.view.obsfromsubject$.next("Hello");
+   this.view.obsFromBehSub$.subscribe(x=>{
+    console.log("from behsub",x);
+    this.count=x;
+  });
+
+  this.view.obsFromRepSub$.subscribe(x=>{
+    console.log("from Replaysub",x)
+  })
+    
+  }
   title = 'RoutingusingTypeScript';
   onLogInClick(){
     this.authservice.login();

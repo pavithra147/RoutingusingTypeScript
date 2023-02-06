@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { interval, map, observable, Observable,of } from 'rxjs';
+import { AsyncSubject, from, interval, map, observable, Observable,of, ReplaySubject, Subject } from 'rxjs';
 import {catchError, filter} from 'rxjs/operators';
 import {ajax} from 'rxjs/ajax';
 @Component({
@@ -72,10 +72,60 @@ const subscription = observable.subscribe(x => console.log(x));
 // was started by calling subscribe with an Observer.
 subscription.unsubscribe();
   
+//subject
+const subject = new Subject<number>
+const obs=from([1,2,3]);
+subject.subscribe({                  //when "subscribing" to the subject it will only get register
+  next:(v)=>console.log("number 1:",`${v}`)
+});
+subject.subscribe({
+  next: (v)=>console.log("number 2:",`${v}`)
+})
+ obs.subscribe({next: (v)=>console.log("number 1",`${v}`)});//but whenever we "subscribing" to the observable it get trigger 
+ obs.subscribe({next: (v)=>console.log("number 2",`${v}`)});
+
+ obs.subscribe(subject);
+ 
+ //Replay Subject
+ const sub = new ReplaySubject(3); // buffer 3 values for new subscribers
+ 
+ sub.subscribe({
+   next: (v) => console.log(`observerA: ${v}`),
+ });
+  
+ sub.next(1);
+ sub.next(2);
+ sub.next(3);
+ sub.next(4);
+  
+ sub.subscribe({
+   next: (v) => console.log(`observerB: ${v}`),
+ });
+  
+ sub.next(5);
+  
+
+
+//Async Subject
+const subj = new AsyncSubject();
+ 
+subj.subscribe({
+  next: (v) => console.log(`observerA from Async Subject: ${v}`),
+});
+ 
+subj.next(1);
+subj.next(2);
+subj.next(3);
+subj.next(4);
+subj.complete();
+subj.subscribe({
+  next: (v) => console.log(`observerB from Async Subject: ${v}`),
+});
+ 
+subj.next(5);
+// subj.complete();
 
 
 }
-
 }
-
 

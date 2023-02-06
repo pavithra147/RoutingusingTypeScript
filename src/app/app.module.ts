@@ -9,6 +9,7 @@ import { ViewComponent } from './view/view.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
+import { ViewService } from './view/view.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { AuthGuardService } from './auth-guard.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [AuthService, AuthGuardService],
+  providers: [AuthService, AuthGuardService,ViewService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
