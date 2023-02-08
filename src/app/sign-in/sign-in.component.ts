@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { AsyncSubject, from, interval, map, observable, Observable,of, ReplaySubject, Subject } from 'rxjs';
 import {catchError, filter} from 'rxjs/operators';
 import {ajax} from 'rxjs/ajax';

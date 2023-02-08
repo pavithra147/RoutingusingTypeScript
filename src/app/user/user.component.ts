@@ -8,8 +8,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UserComponent implements OnInit {
 
-  constructor(private router: Router) { }  // ROUTER gives overall routing//to do logic for navigating page using ts we have inject router
-   
+  constructor(private router: Router) { 
+    setTimeout(()=>{
+      this.data="second"
+    },3000);
+  }  // ROUTER gives overall routing//to do logic for navigating page using ts we have inject router
+   data="first";
   ngOnInit(): void {
   }
   onView(){
